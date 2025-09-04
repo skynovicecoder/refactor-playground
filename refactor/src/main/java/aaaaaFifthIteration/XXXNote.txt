@@ -1,0 +1,29 @@
+At last ... Inheritance
+
+We have several types of movie that have different ways of answering the same question.
+This sounds like a job for subclasses.
+We can have three subclasses of movie, each of which can have its own version of charge
+This allows me to replace the switch statement by using polymorphism.
+
+Sadly it has one slight flaw—it doesn’t work.
+A movie can change its classification during its lifetime.
+An object cannot change its class during its lifetime.
+There is a solution, however, the State pattern [Gang of Four].
+
+To introduce the state pattern I will use three refactorings.
+First I’ll move the type code behavior into the state pattern with Replace Type Code with :: State/Strategy.
+Then I can use :: Move Method to move the switch statement into the price class.
+Finally I’ll use Replace :: Conditional with Polymorphism to eliminate the switch statement.
+
+I begin with Replace Type Code with State/Strategy (227).
+This first step is to use Self Encapsulate Field (171) on the type code
+to ensure that all uses of the type code go through getting and setting methods
+
+I’ve used several refactorings, including Extract Method (110),
+Move Method (142), and Replace Conditional with Polymorphism (255).
+All these lead to better-distributed responsibilities and code that is easier to maintain.
+It does look rather different from procedural style code, and that takes some getting used to.
+
+The most important lesson from this example is the rhythm of refactoring:
+test, small change, test, small change, test, small change.
+It is that rhythm that allows refactoring to move quickly and safely.
