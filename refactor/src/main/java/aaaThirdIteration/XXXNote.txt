@@ -1,0 +1,38 @@
+The next step is to do a similar thing for the frequent renter points.
+The rules vary with the tape, although there is less variation than with charging.
+It seems reasonable to put the responsibility on the rental.
+First we need to use :: Extract Method
+on the frequent renter points part of the code (in boldface type)
+
+
+As I suggested before, temporary variables can be a problem.
+I like to use :: Replace Temp with Query
+to replace totalAmount and frequentRentalPoints with query methods.
+Queries are accessible to any method in the class and thus encourage a cleaner design without long,
+
+Note: This isn’t the simplest case of Replace :: Temp with Query,
+totalAmount was assigned to within the loop, so I have to copy the loop into the query method.
+
+It is worth stopping to think a bit about the last refactoring.
+Most refactorings reduce the amount of code, but this one increases it.
+That’s because Java 1.1 requires a lot of statements to set up a summing loop.
+Even a simple summing loop with one line of code per element needs six lines of support around it.
+It’s an idiom that is obvious to any programmer but is a lot of lines all the same.
+
+The other concern with this refactoring lies in performance.
+The old code executed the “while” loop once, the new code executes it three times.
+A while loop that takes a long time might impair performance.
+Many programmers would not do this refactoring simply for this reason.
+But note the words if and might.
+Until I profile I cannot tell how much time is needed for the loop to calculate or whether the loop is called often enough for it
+to affect the overall performance of the system.
+Don’t worry about this while refactoring.
+When you optimize you will have to worry about it, but you will then be in a much better position to do something about it,
+and you will have more options to optimize effectively
+
+By extracting the calculations I can create the htmlStatement method and
+reuse all of the calculation code that was in the original statement method.
+I didn’t copy and paste, so if the calculation rules change I have only one place in the code to go to.
+Any other kind of statement will be really quick and easy to prepare.
+The refactoring did not take long.
+I spent most of the time figuring out what the code did, and I would have had to do that anyway.

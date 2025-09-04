@@ -1,0 +1,6 @@
+Replacing the Conditional Logic on Price Code with Polymorphism
+The first part of this problem is that switch statement.
+It is a bad idea to do a switch based on an attribute of another object.
+If you must use a switch statement, it should be on your own data, not on someone else’s.
+
+This implies that getCharge should move onto movie
