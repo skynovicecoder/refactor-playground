@@ -1,3 +1,7 @@
+------------------------------------------------------------------
+Refactoring :: Improving the design of the existing code
+------------------------------------------------------------------
+
 What are your impressions about the design of this program?
 I would describe it as not well designed and certainly not object oriented.
 
