@@ -1,4 +1,5 @@
-As I look at amountFor, I can see that it uses information from the rental, but does not use information from the customer.
+As I look at amountFor, I can see that it uses information from the rental,
+but does not use information from the customer.
 This immediately raises my suspicions that the method is on the wrong object.
 In most cases a method should be on the object whose data it uses, thus the method should be moved to the rental.
 To do this I use
@@ -8,3 +9,7 @@ The next thing that strikes me is that thisAmount is now redundant.
 It is set to the result of each.charge and not changed afterward.
 Thus I can eliminate thisAmount by using
 :: Replace Temp with Query
+
+I like to get rid of temporary variables such as this as much as possible.
+Temps are often a problem in that they cause a lot of parameters to be passed around when they don’t have to be.
+You can easily lose track of what they are there for. They are particularly insidious in long methods.

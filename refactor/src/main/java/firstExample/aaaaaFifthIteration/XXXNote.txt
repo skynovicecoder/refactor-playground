@@ -15,12 +15,12 @@ First I’ll move the type code behavior into the state pattern with Replace Typ
 Then I can use :: Move Method to move the switch statement into the price class.
 Finally I’ll use Replace :: Conditional with Polymorphism to eliminate the switch statement.
 
-I begin with Replace Type Code with State/Strategy (227).
-This first step is to use Self Encapsulate Field (171) on the type code
+I begin with Replace Type Code with State/Strategy.
+This first step is to use Self Encapsulate Field on the type code
 to ensure that all uses of the type code go through getting and setting methods
 
-I’ve used several refactorings, including Extract Method (110),
-Move Method (142), and Replace Conditional with Polymorphism (255).
+I’ve used several refactorings, including Extract Method,
+Move Method, and Replace Conditional with Polymorphism.
 All these lead to better-distributed responsibilities and code that is easier to maintain.
 It does look rather different from procedural style code, and that takes some getting used to.
 

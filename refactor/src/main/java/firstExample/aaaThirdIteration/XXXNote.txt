@@ -2,7 +2,7 @@ The next step is to do a similar thing for the frequent renter points.
 The rules vary with the tape, although there is less variation than with charging.
 It seems reasonable to put the responsibility on the rental.
 First we need to use :: Extract Method
-on the frequent renter points part of the code (in boldface type)
+on the frequent renter points part of the code
 
 
 As I suggested before, temporary variables can be a problem.
@@ -24,8 +24,8 @@ The old code executed the “while” loop once, the new code executes it three 
 A while loop that takes a long time might impair performance.
 Many programmers would not do this refactoring simply for this reason.
 But note the words if and might.
-Until I profile I cannot tell how much time is needed for the loop to calculate or whether the loop is called often enough for it
-to affect the overall performance of the system.
+Until I profile I cannot tell how much time is needed for the loop to calculate
+or whether the loop is called often enough for it to affect the overall performance of the system.
 Don’t worry about this while refactoring.
 When you optimize you will have to worry about it, but you will then be in a much better position to do something about it,
 and you will have more options to optimize effectively

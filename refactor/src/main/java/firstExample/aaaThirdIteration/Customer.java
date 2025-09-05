@@ -46,12 +46,15 @@ class Customer {
 
         }
         //add footer lines
+        ////Replace :: Temp with Query
         result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+        ////Replace :: Temp with Query
         result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) +
                 " frequent renter points";
         return result;
     }
 
+    //// Due to Replace Temp with Query
     private double getTotalCharge() {
         double result = 0;
         Enumeration rentals = _rentals.elements();
@@ -62,6 +65,7 @@ class Customer {
         return result;
     }
 
+    //// Due to Replace Temp with Query
     private int getTotalFrequentRenterPoints() {
         int result = 0;
         Enumeration rentals = _rentals.elements();
