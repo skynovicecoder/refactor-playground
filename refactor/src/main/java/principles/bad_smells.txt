@@ -1,0 +1,212 @@
+Bad Smells in Code
+If it stinks, change it.
+
+Duplicated Code
+ - Extract Method
+ - Pull Up Method
+ - Form Template Method
+ - Substitute Algorithm
+
+If you have duplicated code in two unrelated classes
+ - Extract Class
+
+Long Method
+ - Extract Method
+ - Replace Temp with Query
+
+ Long lists of parameters can be slimmed down
+ - Introduce Parameter Object
+ - Preserve Whole Object
+
+ - Replace Method with Method Object (If you’ve tried that, and you still have too many temps and parameters)
+
+ Conditionals and loops also give signs for extractions.
+ - Decompose Conditional
+
+Large Class
+ - Extract Class
+ - Extract Subclass
+ - Extract Interface
+ - Duplicate Observed Data (If your large class is a GUI class, you may need to move data and behavior to a separate domain object.)
+
+Long Parameter List
+ - Replace Parameter with Method
+ - Preserve Whole Object (to take a bunch of data cleaned from an object and replace it with the object itself.)
+ - Introduce Parameter Object (If you have several data items with no logical object)
+
+Divergent Change
+Divergent change occurs when one class is commonly changed in different ways for different reasons.
+ - Extract Class
+
+Shotgun Surgery
+Shotgun surgery is similar to divergent change but is the opposite.
+You whiff this when every time you make a kind of change,
+you have to make a lot of little changes to a lot of different classes.
+When the changes are all over the place, they are hard to find, and it’s easy to miss an important change.
+ - Move Method
+ - Inline Class
+
+Feature Envy
+The whole point of objects is that they are a technique to package data with the processes used on that data.
+A classic smell is a method that seems more interested in a class other than the one it actually is in.
+ -  Move Method
+ - Extract Method
+
+Data Clumps
+Data items tend to be like children; they enjoy hanging around in groups together.
+Often you’ll see the same three or four data items together in lots of places:
+fields in a couple of classes,
+parameters in many method signatures.
+Bunches of data that hang around together really ought to be made into their own object.
+ - Extract Class
+ - Introduce Parameter Object
+ - Preserve Whole Object
+
+Primitive Obsession
+Most programming environments have two kinds of data.
+1. Record types allow you to structure data into meaningful groups.
+2. Primitive types are your building blocks.
+ - Replace Data Value with Object (If the data value is a type code)
+ - Replace Type Code with Class (If the value does not affect behavior)
+
+ If you have conditionals that depend on the type code,
+ - Replace Type Code with Subclasses
+ - Replace Type Code with State/Strategy
+
+ If you have a group of fields that should go together
+ - Extract Class
+
+ If you see these primitives in parameter lists, try a civilizing dose of
+ -  Introduce Parameter Object
+
+ If you find yourself picking apart an array
+ - Replace Array with Object
+
+Switch Statements
+One of the most obvious symptoms of object-oriented code is its comparative lack of switch (or case) statements.
+The problem with switch statements is essentially that of duplication.
+Often you find the same switch statement scattered about a program in different places.
+If you add a new clause to the switch, you have to find all these switch statements and change them.
+The object-oriented notion of polymorphism gives you an elegant way to deal with this problem.
+ - Extract Method (to extract the switch statement)
+ - Move Method (to get it onto the class where the polymorphism is needed)
+ - Replace Type Code with Subclasses or Replace Type Code with State/Strategy
+ - Replace Conditional with Polymorphism (When you have set up the inheritance structure)
+
+If you only have a few cases that affect a single method,
+and you don’t expect them to change,
+then polymorphism is overkill.
+In this case:
+ - Replace Parameter with Explicit Methods
+
+ If one of your conditional cases is a null:
+ - Introduce Null Object
+
+Parallel Inheritance Hierarchies
+Parallel inheritance hierarchies is really a special case of shotgun surgery.
+In this case, every time you make a subclass of one class,
+you also have to make a subclass of another.
+You can recognize this smell because the prefixes of the class names in one hierarchy
+are the same as the prefixes in another hierarchy.
+
+The general strategy for eliminating the duplication is
+to make sure that instances of one hierarchy refer to instances of the other.
+If you:
+ - Move Method
+ - Move Field
+the hierarchy on the referring class disappears
+
+Lazy Class
+Each class you create costs money to maintain and understand.
+A class that isn’t doing enough to pay for itself should be eliminated
+If you have subclasses that aren’t doing enough:
+ - Collapse Hierarchy
+ - Inline Class
+
+Speculative Generality
+ - Collapse Hierarchy (If you have abstract classes that aren’t doing much)
+ - Inline Class (with this Unnecessary delegation can be removed)
+ - Remove Parameter (Methods with unused parameters)
+ - Rename Method (Methods named with odd abstract names should be brought down to earth)
+
+Temporary Field
+Sometimes you see an object in which an instance variable is set only in certain circumstances.
+Such code is difficult to understand, because you expect an object to need all of its variables.
+Trying to understand why a variable is there when it doesn’t seem to be used can drive you nuts.
+ - Extract Class (to create a home for the poor orphan variables)
+ - Introduce Null Object (to eliminate conditional code)
+
+Message Chains
+You see message chains when a client asks one object for another object,
+which the client then asks for yet another object,
+which the client then asks for yet another another object, and so on.
+ - Hide Delegate
+ - Extract Method
+ - Move Method
+
+Middle Man
+One of the prime features of objects is encapsulation—hiding internal details from the rest of the world.
+Encapsulation often comes with delegation.
+ - Remove Middle Man (talk to the object that really knows what’s going on)
+ - Inline Method (If only a few methods aren’t doing much)
+ - Replace Delegation with Inheritance ( If there is additional behavior you can use this,
+                                            to turn the middle man into a subclass of the real object,
+                                            That allows you to extend behavior without chasing all that delegation)
+
+Inappropriate Intimacy
+Sometimes classes become far too intimate and spend too much time delving in each others’ private parts.
+ - Move Method
+ - Move Field
+ - Change Bidirectional Association to Unidirectional
+ If the classes do have common interests:
+ - Extract Class (to put the commonality in a safe place and make honest classes of them)
+ - Hide Delegate
+
+ Inheritance often can lead to overintimacy.
+ Subclasses are always going to know more about their parents than their parents would like them to know.
+ If it’s time to leave home, apply
+ - Replace Inheritance with Delegation
+
+Alternative Classes with Different Interfaces
+ - Rename Method
+ - Move Method
+ - Extract Superclass
+
+Incomplete Library Class
+ - Move Method
+ - Introduce Foreign Method
+ - Introduce Local Extension
+ - Encapsulate Field
+ - Encapsulate Collection
+ - Remove Setting Method (on any field that should not be changed)
+
+Refused Bequest
+Subclasses get to inherit the methods and data of their parents.
+But what if they don’t want or need what they are given?
+They are given all these great gifts and pick just a few to play with.
+ - Push Down Method
+ - Push Down Field
+
+The smell of refused bequest is much stronger if the subclass is reusing behavior
+but does not want to support the interface of the superclass.
+We don’t mind refusing implementations, but refusing interface gets us on our high horses.
+ - Replace Inheritance with Delegation
+
+Comments
+Don’t worry, we aren’t saying that people shouldn’t write comments.
+In our olfactory analogy, comments aren’t a bad smell; indeed they are a sweet smell.
+
+The reason we mention comments here is that comments often are used as a deodorant.
+It’s surprising how often you look at thickly commented code
+and notice that the comments are there because the code is bad.
+ - Extract Method (If you need a comment to explain what a block of code does)
+ - Rename Method (If the method is already extracted but you still need a comment to explain what it does)
+ - Introduce Assertion (If you need to state some rules about the required state of the system)
+
+- When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous.
+
+
+
+
+
+

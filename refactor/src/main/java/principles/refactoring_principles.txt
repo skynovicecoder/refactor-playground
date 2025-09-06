@@ -1,0 +1,31 @@
+Refactoring (noun): a change made to the internal structure of software to make it easier to understand
+and cheaper to modify without changing its observable behavior.
+
+Refactor (verb): to restructure software by applying a series of refactorings without changing its observable behavior.
+
+The Two Hats:
+As you develop software, you probably find yourself swapping hats frequently.
+You start by trying to add a new function, and you realize this would be much easier if the code were structured differently.
+So you swap hats and refactor for a while.
+Once the code is better structured, you swap hats and add the new function.
+
+Why Should You Refactor?
+Refactoring Improves the Design of Software
+Refactoring Makes Software Easier to Understand
+Refactoring Helps You Find Bugs
+Refactoring Helps You Program Faster
+
+When Should You Refactor?
+The Rule of Three
+Three strikes and you refactor.
+Refactor When You Need to Fix a Bug
+Refactor As You Do a Code Review
+
+Problems with Refactoring
+Databases
+Changing Interfaces : Don’t publish interfaces prematurely. Modify your code ownership policies to smooth refactoring.
+Design Changes That Are Difficult to Refactor
+
+When Shouldn’t You Refactor?
+The principle example is when you should rewrite from scratch instead.
+The other time you should avoid refactoring is when you are close to a deadline.
